@@ -24,3 +24,6 @@ hs_err_pid*
 #IDE files
 .idea/**
 algorithms.iml
+
+#output files
+out/**

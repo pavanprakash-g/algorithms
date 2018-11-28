@@ -1,7 +1,7 @@
 package mst;
 
 import datastructures.Edge;
-import datastructures.unionfind.Node;
+import datastructures.unionfind.UFNode;
 import datastructures.unionfind.UnionFind;
 
 import java.util.*;
@@ -10,17 +10,17 @@ import java.util.*;
  * Created by pavanprakash-g on 1/23/18.
  */
 public class KruskalsA {
-    public static HashMap<Integer, Node> createList(int nodeCount){
-        HashMap<Integer, Node> nodeList = new LinkedHashMap<>();
+    public static HashMap<Integer, UFNode> createList(int nodeCount){
+        HashMap<Integer, UFNode> nodeList = new LinkedHashMap<>();
         for(int i = 0; i < nodeCount; i++){
-            Node node = new Node();
+            UFNode node = new UFNode();
             node.nodeId = i;
             nodeList.put(i, node);
         }
         return nodeList;
     }
 
-    public static void kruskalsA(List<Edge> edgeList, UnionFind unionFind, HashMap<Integer, Node> nodeList, int[][] result){
+    public static void kruskalsA(List<Edge> edgeList, UnionFind unionFind, HashMap<Integer, UFNode> nodeList, int[][] result){
         HashMap<Integer, Integer> nodes = new HashMap<>();
         for(Edge edge: edgeList){
             nodes.put(edge.getId(), edge.getWeight());
@@ -69,7 +69,7 @@ public class KruskalsA {
                                         {0, 5, 7, 9, 0},
                                     };
         List<Edge> edgeList = generateEdges(graph);
-        HashMap<Integer, Node> nodeList = createList(graph.length);
+        HashMap<Integer, UFNode> nodeList = createList(graph.length);
         UnionFind unionFind = new UnionFind(nodeList);
         unionFind.makeSet();
         int resultSet[][] = new int[graph.length][graph[0].length];
