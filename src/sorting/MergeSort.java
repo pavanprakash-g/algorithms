@@ -4,15 +4,49 @@ package sorting;
  * Created by pavanprakash-g on 1/27/18.
  */
 public class MergeSort {
-    public void mergeSort(int[] inputArray, int start, int end){
+    public static int[] mergeSort(int[] inputArray, int start, int end){
         if(start < end) {
             int mid = (start + end) / 2;
-            mergeSort(inputArray, start, mid);
-            mergeSort(inputArray, mid + 1, end);
+            int[] left = mergeSort(inputArray, start, mid);
+            int[] right = mergeSort(inputArray, mid + 1, end);
 
-            merge(inputArray, start, mid, end);
+            return merge(left, right);
+        }else {
+            return new int[]{inputArray[start]};
         }
-        //return inputArray;
+
+    }
+
+    private static int[] merge(int[] left, int[] right){
+        int lp = 0;
+        int rp = 0;
+        int inputCounter = 0;
+        int[] result = new int[left.length + right.length];
+        while(lp < left.length && rp < right.length){
+            if(left[lp] < right[rp]){
+                result[inputCounter] = left[lp];
+                lp++;
+            }else {
+                result[inputCounter] = right[rp];
+                rp++;
+            }
+            inputCounter++;
+        }
+
+        while (lp < left.length){
+            result[inputCounter] = left[lp];
+            inputCounter++;
+            lp++;
+        }
+
+        while (rp < right.length){
+            result[inputCounter] = right[rp];
+            inputCounter++;
+            rp++;
+        }
+
+        return result;
+
     }
 
     public void merge(int[] inputArray, int start, int mid, int end){
@@ -50,10 +84,11 @@ public class MergeSort {
 
     public static void main(String[] args){
         int arr[] = {4,1,2,3,-1, -2};
-        MergeSort m = new MergeSort();
-        m.mergeSort(arr, 0, arr.length-1);
-        for(int i = 0 ; i < arr.length; i++){
-            System.out.println(arr[i]);
+//        MergeSort m = new MergeSort();
+//        m.mergeSort(arr, 0, arr.length-1);
+        int[] result = MergeSort.mergeSort(arr, 0, arr.length-1);
+        for(int i = 0 ; i < result.length; i++){
+            System.out.println(result[i]);
         }
     }
 

@@ -4,7 +4,7 @@ package sorting;
  * Created by pavanprakash-g on 1/27/18.
  */
 public class QuickSort {
-    public void quickSort(int[] inputArray, int start, int end){
+    public static void quickSort(int[] inputArray, int start, int end){
         if(start < end) {
             int partition = partition(inputArray, start, end);
             quickSort(inputArray, start, partition-1);
@@ -13,7 +13,7 @@ public class QuickSort {
     }
 
 
-    public int partition (int arr[], int low, int high){
+    private static int partition (int arr[], int low, int high){
         int pivot = arr[high];
         int i = low;
         int temp;
@@ -33,8 +33,7 @@ public class QuickSort {
 
     public static void main(String[] args){
         int arr[] = {4,1,2,3,-1, -2};
-        QuickSort m = new QuickSort();
-        m.quickSort(arr, 0, arr.length-1);
+        QuickSort.quickSort(arr, 0, arr.length-1);
         for(int i = 0 ; i < arr.length; i++){
             System.out.println(arr[i]);
         }
